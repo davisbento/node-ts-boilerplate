@@ -2,15 +2,15 @@ import { IUser } from 'interfaces/IUser';
 import { Document, Schema, Model, model } from 'mongoose';
 import * as bcrypt from 'bcrypt-nodejs';
 
-interface IUserModel extends IUser, Document {
+export interface IUserModel extends IUser, Document {
   generateHash(password: string): string;
   comparPassword(password: string, passwordStored: string): boolean;
 }
 
 const userSchema: Schema = new Schema({
-  name: { type: String, required: false },
+  name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  pass: { type: String, required: true },
+  password: { type: String, required: true, minlength: [4, 'Password must be greater than 3'] },
   active: { type: Boolean, default: true },
   register_date: { type: Date, default: Date.now },
   reset_token: { type: String, required: false },

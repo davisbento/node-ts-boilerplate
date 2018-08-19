@@ -1,7 +1,7 @@
 export interface IUser {
-  name?: string;
+  name: string;
   email: string;
-  pass: string;
+  password: string;
   active?: boolean;
   register_date?: string;
   reset_token?: string;

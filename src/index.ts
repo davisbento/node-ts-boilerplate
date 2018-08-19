@@ -6,8 +6,8 @@ import './config/views';
 
 const PORT = process.env.PORT || 8080;
 
+routes(server);
+
 server.listen(PORT, () => {
   console.log('BACKEND RUNNING ON PORT', PORT);
 });
-
-routes(server);
