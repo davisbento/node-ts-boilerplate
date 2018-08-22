@@ -4,5 +4,6 @@
 2. Nunjucks Template
 3. ES6
 4. Babel
-5. Eslint Airbnb
+5. TSLint
 6. TypeScript
+7. Docker
