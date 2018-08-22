@@ -1,9 +1,8 @@
 # Node.JS Boilerplate with TypeScript
 
 1. TypeScript
-2. Nunjucks Template
+2. Docker
 3. ES6
-4. Babel
+4. MongoDB (Mongoose)
 5. TSLint
 6. TypeScript
-7. Docker
