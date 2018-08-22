@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    container_name: express-app
+    build: ./docker/dev
+    environment:
+      - MONGODB=mongodb://mongo:27017/express-app
+      - PORT=8080
+    ports:
+      - '8080:8080'
+    volumes:
+      - ".:/usr/src/app"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - '27017:27017'

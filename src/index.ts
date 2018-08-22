@@ -4,6 +4,8 @@ import './config/db';
 import './config/cors';
 import './config/views';
 
+require('dotenv').config();
+
 const PORT = process.env.PORT || 8080;
 
 routes(server);

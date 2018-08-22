@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-const uri = 'mongodb://localhost:27017/myapp';
+const uri = process.env.MONGODB || 'mongodb://localhost:27017/myapp';
 
 const options = {
   useNewUrlParser: true,

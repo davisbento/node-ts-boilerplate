@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "commonjs",
-    "target": "es5",
+    "target": "esnext",
     "experimentalDecorators": true,
     "lib": [
       "es2017"
@@ -26,10 +26,6 @@
   ],
   "exclude": [
     "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "src/setupTests.ts"
+    "dist"
   ]
 }
