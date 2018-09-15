@@ -1,7 +1,6 @@
 import server from './config/server';
 import routes from './config/routes';
 import './config/db';
-import './config/cors';
 import './config/views';
 
 require('dotenv').config();
