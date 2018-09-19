@@ -7,7 +7,7 @@
 5. TSLint
 6. TypeScript
 
-## Getting started - PROD
+## Getting started
 1. Install dependencies
 ```
 yarn
