@@ -1,12 +1,7 @@
 import server from './config/server';
-import routes from './config/routes';
-import './config/db';
-
-require('dotenv').config();
+// import './config/db';
 
 const PORT = process.env.PORT || 8080;
-
-routes(server);
 
 server.listen(PORT, () => {
   console.log('BACKEND RUNNING ON PORT', PORT);

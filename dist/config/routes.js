@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
 const home_1 = require("../controllers/home");
-const news_1 = require("../controllers/news");
-const auth_1 = require("../controllers/auth");
 const user_1 = require("../controllers/user");
-const routes = (server) => {
-    server.use('/api/', home_1.default);
-    server.use('/api/news', news_1.default);
-    server.use('/api/auth', auth_1.default);
-    server.use('/api/users', user_1.default);
-};
+const auth_1 = require("../controllers/auth");
+const routes = express_1.Router();
+routes.get('/api/', home_1.default.index);
+routes.get('/api/user', user_1.default.index);
+routes.get('/api/user/:id', user_1.default.findById);
+routes.post('/auth/register', auth_1.default.register);
 exports.default = routes;

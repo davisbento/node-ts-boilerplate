@@ -1,9 +1,15 @@
-import * as express from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-const router = express.Router();
+class HomeController {
+  public async index(req: Request, res: Response, next: NextFunction) {
+    try {
+      res.json({
+        message: 'home',
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+}
 
-router.get('/', (req, res) => {
-  res.json({});
-});
-
-export default router;
+export default new HomeController();

@@ -1,13 +1,15 @@
-import homeController from '../controllers/home';
-import newsController from '../controllers/news';
-import authController from '../controllers/auth';
-import userController from '../controllers/user';
+import { Router } from 'express';
+import HomeController from '../controllers/home';
+import UserController from '../controllers/user';
+import AuthController from '../controllers/auth';
 
-const routes = (server: any) => {
-  server.use('/api/', homeController);
-  server.use('/api/news', newsController);
-  server.use('/api/auth', authController);
-  server.use('/api/users', userController);
-};
+const routes = Router();
+
+routes.get('/api/', HomeController.index);
+
+routes.get('/api/user', UserController.index);
+routes.get('/api/user/:id', UserController.findById);
+
+routes.post('/auth/register', AuthController.register);
 
 export default routes;
