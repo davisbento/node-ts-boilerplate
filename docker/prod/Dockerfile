@@ -10,9 +10,8 @@ RUN yarn build
 RUN yarn install --production --force
 
 RUN mv /app/dist /dist \
-    && mv /app/node_modules /dist/node_modules \
-    && mv /app/package.json /dist/package.json \
-    && ls -al /dist
+  && mv /app/node_modules /dist/node_modules \
+  && mv /app/package.json /dist/package.json
 
 # Cria uma segunda imagem mais leve com os arquivos compilados
 FROM node:10-alpine

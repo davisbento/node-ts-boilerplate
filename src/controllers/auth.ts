@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcryptjs';
-import { NextFunction, Request, Response } from 'express-serve-static-core';
+import { NextFunction, Request, Response } from 'express';
 
 import { formatError } from '../helpers/formatError';
 import { IUser } from '../interfaces/IUser';
