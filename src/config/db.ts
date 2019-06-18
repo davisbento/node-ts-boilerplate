@@ -15,12 +15,14 @@ const options = {
   family: 4, // Use IPv4, skip trying IPv6
 };
 
-mongoose.connect(uri, options).then(
-  () => {
-    /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
-    console.log('mongoose connected successful');
-  },
-  err => console.log(`err connecting mongoose: ${err}`),
-);
+const connection = () => {
+  mongoose.connect(uri, options).then(
+    () => {
+      /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
+      console.log('mongoose connected successful');
+    },
+    err => console.log(`err connecting mongoose: ${err}`)
+  );
+};
 
-export default mongoose;
+export default connection;

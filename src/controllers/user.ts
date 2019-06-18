@@ -1,13 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { User } from '../models/user';
+import { IUserModel, User } from '../models/user';
 import { formatError } from './../helpers/formatError';
-import { IUser } from './../interfaces/IUser';
 
 class UserController {
   public async index(req: Request, res: Response, next: NextFunction) {
     try {
-      const user: Array<IUser> = await User.find();
+      const user: Array<IUserModel> = await User.find();
 
       if (user.length === 0) {
         return res.status(404).json({ success: true, data: [] });
@@ -22,7 +21,7 @@ class UserController {
 
   public async findById(req: Request, res: Response, next: NextFunction) {
     try {
-      const user: IUser = await User.findById(req.params.id);
+      const user: IUserModel = await User.findById(req.params.id);
 
       if (!user) {
         return res.status(404).json({ success: true, data: {} });

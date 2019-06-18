@@ -2,13 +2,14 @@ import * as bcrypt from 'bcryptjs';
 import { NextFunction, Request, Response } from 'express';
 
 import { formatError } from '../helpers/formatError';
-import { IUser } from '../interfaces/IUser';
-import { User } from '../models/user';
+import { IUserModel, User } from '../models/user';
 
 class AuthController {
   public async register(req: Request, res: Response, next: NextFunction) {
     try {
-      const user: Array<IUser> = await User.find({ email: req.body.email });
+      const user: Array<IUserModel> = await User.find({
+        email: req.body.email,
+      });
 
       if (user.length > 0) {
         // http status for 'conflict'
@@ -16,7 +17,7 @@ class AuthController {
           .status(409)
           .json({ success: false, error: { message: 'E-mail already taken' } });
       } else {
-        const data: IUser = {
+        const data = {
           email: req.body.email,
           name: req.body.name,
           password: req.body.password,

@@ -1,9 +1,11 @@
+import 'dotenv/config';
+
 import * as express from 'express';
 import * as morgan from 'morgan';
-import allowCors from './cors';
-import 'dotenv/config';
-import { errorHandling } from '../middleware/error';
 
+import { errorHandling } from '../middleware/error';
+import allowCors from './cors';
+import db from './db';
 import routes from './routes';
 
 class App {
@@ -12,6 +14,7 @@ class App {
   constructor() {
     this.app = express();
     this.middlewares();
+    this.database();
     this.routes();
     this.errorMiddleware();
   }
@@ -28,6 +31,10 @@ class App {
 
   private routes(): void {
     this.app.use(routes);
+  }
+
+  private database(): void {
+    db();
   }
 }
 
