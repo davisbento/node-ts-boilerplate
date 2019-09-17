@@ -1,6 +1,6 @@
 version: '3'
 services:
-  web:
+  node-ts:
     container_name: express-app
     build:
       context: ./

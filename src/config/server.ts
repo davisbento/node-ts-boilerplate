@@ -5,7 +5,7 @@ import * as morgan from 'morgan';
 
 import { errorHandling } from '../middleware/error';
 import allowCors from './cors';
-import db from './db';
+// import db from './db';
 import routes from './routes';
 
 class App {
@@ -14,7 +14,7 @@ class App {
   constructor() {
     this.app = express();
     this.middlewares();
-    this.database();
+    // this.database();
     this.routes();
     this.errorMiddleware();
   }
@@ -33,9 +33,9 @@ class App {
     this.app.use(routes);
   }
 
-  private database(): void {
-    db();
-  }
+  // private database(): void {
+  //   db();
+  // }
 }
 
 export default new App().app;
