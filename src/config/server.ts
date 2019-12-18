@@ -1,41 +1,27 @@
 import 'dotenv/config';
 
-import * as express from 'express';
-import * as morgan from 'morgan';
+import express from 'express';
+import morgan from 'morgan';
 
 import { errorHandling } from '../middleware/error';
 import allowCors from './cors';
-// import db from './db';
 import routes from './routes';
 
-class App {
-  public app: express.Application;
+// import { createConnection } from './db';
+const PORT = process.env.PORT || 8080;
 
-  constructor() {
-    this.app = express();
-    this.middlewares();
-    // this.database();
-    this.routes();
-    this.errorMiddleware();
-  }
+const app = express();
 
-  private middlewares(): void {
-    this.app.use(express.json());
-    this.app.use(allowCors);
-    this.app.use(morgan('combined'));
-  }
+export const createServer = async () => {
+  // await createConnection();
 
-  private errorMiddleware(): void {
-    this.app.use(errorHandling);
-  }
+  app.use(express.json());
+  app.use(allowCors);
+  app.use(morgan('combined'));
+  app.use(routes);
+  app.use(errorHandling);
 
-  private routes(): void {
-    this.app.use(routes);
-  }
-
-  // private database(): void {
-  //   db();
-  // }
-}
-
-export default new App().app;
+  app.listen(PORT, () => {
+    console.log('BACKEND RUNNING ON PORT', PORT);
+  });
+};

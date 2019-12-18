@@ -2,7 +2,7 @@ import * as mongoose from 'mongoose';
 
 const uri = process.env.MONGODB || 'mongodb://localhost:27017/myapp';
 
-const options = {
+const options: mongoose.ConnectionOptions = {
   useNewUrlParser: true,
   autoIndex: false, // Don't build indexes
   reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
@@ -12,17 +12,14 @@ const options = {
   bufferMaxEntries: 0,
   connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
   socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
-  family: 4, // Use IPv4, skip trying IPv6
+  family: 4 // Use IPv4, skip trying IPv6
 };
 
-const connection = () => {
-  mongoose.connect(uri, options).then(
-    () => {
-      /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
-      console.log('mongoose connected successful');
-    },
-    err => console.log(`err connecting mongoose: ${err}`)
-  );
+export const createConnection = async () => {
+  try {
+    await mongoose.connect(uri, options);
+    console.log('connect to mongo');
+  } catch (err) {
+    console.log('error', err);
+  }
 };
-
-export default connection;

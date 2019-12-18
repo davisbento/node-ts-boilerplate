@@ -1,25 +1,26 @@
-FROM node:10-alpine
+FROM node:12-alpine
 
-COPY docker/prod/ecosystem.json /dist/ecosystem.json
-ADD . /app
+WORKDIR /app
+COPY . /app
+
+RUN set -x \
+  && yarn \
+  && yarn build
+
+FROM node:12-alpine
 
 WORKDIR /app
 
-RUN yarn install
-RUN yarn build
-RUN yarn install --production --force
+COPY --from=0 /app/dist /app/dist
+COPY --from=0 /app/package.json /app
+COPY --from=0 /app/yarn.lock /app
 
-RUN mv /app/dist /dist \
-  && mv /app/node_modules /dist/node_modules \
-  && mv /app/package.json /dist/package.json
+RUN set -x \
+  && apk --no-cache add tzdata \
+  && cp /usr/share/zoneinfo/Brazil/East /etc/localtime \
+  && echo Brazil/East > /etc/timezone \
+  && apk del tzdata \
+  && yarn install --prod \
+  && yarn cache clean
 
-# Cria uma segunda imagem mais leve com os arquivos compilados
-FROM node:10-alpine
-
-COPY --from=0 /dist /var/www
-
-RUN npm install -g pm2
-
-WORKDIR /var/www
-
-CMD pm2-docker start ecosystem.json
+CMD node /app/dist/index.js
