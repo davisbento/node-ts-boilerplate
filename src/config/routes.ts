@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import AuthController from '../controllers/auth';
+import { register } from '../controllers/auth';
 import { index } from '../controllers/home';
 import { findUserById, indexUsers } from '../controllers/user';
 
@@ -11,6 +11,6 @@ routes.get('/api/', index);
 routes.get('/api/user', indexUsers);
 routes.get('/api/user/:id', findUserById);
 
-routes.post('/auth/register', AuthController.register);
+routes.post('/auth/register', register);
 
 export default routes;
