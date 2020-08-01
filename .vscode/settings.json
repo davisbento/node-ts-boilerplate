@@ -1,0 +1,34 @@
+{
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  "eslint.enable": true,
+  "files.exclude": {
+    "build": true,
+    "**/*.css": {
+      "when": "$(basename).scss"
+    },
+    "**/*.js": {
+      "when": "$(basename).ts"
+    },
+    "**/*?.js": {
+      "when": "$(basename).tsx"
+    },
+    "**/*.lock.json": true,
+    "**/*.map": {
+      "when": "$(basename)"
+    },
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.tmp": true,
+    "**/bin/**": true,
+    "**/obj/**": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescriptHero.imports.organizeSortsByFirstSpecifier": true,
+  "typescriptHero.imports.ignoredFromRemoval": [],
+  "typescriptHero.imports.multiLineTrailingComma": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
