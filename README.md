@@ -10,15 +10,15 @@
 ## Getting started
 1. Install dependencies
 ```
-yarn
+npm install
 ```
-2. Compile typescript
+2. Run production
 ```
-yarn build && yarn start
+npm run prod
 ```
 2. Or in dev mode (automatic compile typescript)
 ```
-yarn dev
+npm run dev
 ```
 3. App is live at:
 ```
