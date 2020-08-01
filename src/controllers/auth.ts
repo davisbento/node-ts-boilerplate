@@ -1,35 +1,34 @@
-import * as bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 
-import { formatError } from '../helpers/formatError';
-import { IUserModel, User } from '../models/user';
+import { addUser, loginUser } from '../services/user';
 
-export const register = async (req: Request, res: Response) => {
+export const register = async (req: Request, res: Response, next: any) => {
   try {
-    const findUser: Array<IUserModel> = await User.find({
-      email: req.body.email
-    });
-
-    if (findUser.length > 0) {
-      return res.status(409).json({ error: { message: 'E-mail already taken' } });
-    }
     const data = {
       email: req.body.email,
       name: req.body.name,
       password: req.body.password
     };
 
-    const user = new User();
-    const hashedPassword = await bcrypt.hash(data.password, 10);
-    user.password = hashedPassword;
-    user.email = data.email;
-    user.name = data.name;
+    const response = await addUser(data);
 
-    const response = await user.save();
-
-    return res.status(200).json({ data: response });
+    return res.status(200).json(response);
   } catch (err) {
-    const errors = formatError(err);
-    return res.status(500).json({ errors });
+    next(err);
+  }
+};
+
+export const login = async (req: Request, res: Response, next: any) => {
+  try {
+    const data = {
+      email: req.body.email,
+      password: req.body.password
+    };
+
+    const response = await loginUser(data);
+
+    return res.status(200).json({ token: response });
+  } catch (err) {
+    next(err);
   }
 };

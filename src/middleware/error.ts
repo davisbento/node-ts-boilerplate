@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import HttpException from 'exceptions/HttpException';
+import HttpException from '../exceptions/HttpException';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const errorHandling = (err: HttpException, req: Request, res: Response, next: NextFunction) => {
