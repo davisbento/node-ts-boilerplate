@@ -4,7 +4,7 @@
 2. Docker
 3. ES6
 4. MongoDB (Mongoose)
-5. TSLint
+5. ESlint
 6. TypeScript
 
 ## Getting started
