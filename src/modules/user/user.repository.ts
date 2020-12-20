@@ -1,7 +1,7 @@
 import { User, IUserModel } from './models/user';
-import { UserRepositoryInterface, addUserParams } from './interfaces/user-repository';
+import { addUserParams } from './interfaces/user-repository';
 
-export class UserRepository implements UserRepositoryInterface {
+export class UserRepository {
   constructor(private readonly userModel: typeof User) {}
 
   public async getAll(): Promise<IUserModel[]> {
