@@ -1,7 +1,7 @@
-import { UserRepository } from './user.repository';
+import { IUserRepository } from './interfaces/user-repository';
 
 export class UserService {
-  constructor(private userRepository: UserRepository) {}
+  constructor(private userRepository: IUserRepository) {}
 
   public getAllUsers() {
     return this.userRepository.getAll();

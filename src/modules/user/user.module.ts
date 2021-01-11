@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { UserRepository } from './user.repository';
-import { User } from './models/user';
+import { User } from '@/global/db/models/user';
 
 export default (router: Router): void => {
   const userRepository = new UserRepository(User);

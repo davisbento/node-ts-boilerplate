@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { IUserModel } from '../models/user';
+import { IUserModel } from '@/global/db/models/user';
 
 const secret = process.env.SECRET_KEY || 'IMBATMAN';
 

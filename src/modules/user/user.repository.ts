@@ -1,7 +1,7 @@
-import { User, IUserModel } from './models/user';
-import { addUserParams } from './interfaces/user-repository';
+import { User, IUserModel } from '@/global/db/models/user';
+import { addUserParams, IUserRepository } from './interfaces/user-repository';
 
-export class UserRepository {
+export class UserRepository implements IUserRepository {
   constructor(private readonly userModel: typeof User) {}
 
   public async getAll(): Promise<IUserModel[]> {
